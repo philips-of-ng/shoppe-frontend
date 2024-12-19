@@ -45,7 +45,7 @@ const Start = () => {
       toast.error(`Please create a password...`)
       return
     } else if (!passwordRegex.test(formData.password)) {
-      
+
     }
 
     formData.fullName = `${formData.firstName} ${formData.lastName}`
@@ -55,9 +55,9 @@ const Start = () => {
 
     try {
       const api = 'http://localhost:3020'
-      
+
     } catch (error) {
-      
+
     }
 
   }
@@ -102,23 +102,31 @@ const Start = () => {
         ) : display == 'login' ? (
           <>
             <div className='login fade-in'>
-              <div className='login-top'>
-                <h1>Login</h1>
-                <p>Glad to see you back. <i className='bx bx-heart'></i></p>
-                <input type="email" placeholder='Email' />
-              </div>
 
-              <div className='welcome-actions'>
+              <div className='shape shape-1'></div>
+              <div className='shape shape-2'></div>
+              <div className='shape shape-3'></div>
 
-                <button className='g-st'>Next</button>
-
-                <div className='h-ac'>
-
-                  <p onClick={() => setDisplay('intro')}>Cancel</p>
-
+              <div className='content'>
+                <div className='login-top'>
+                  <h1>Login</h1>
+                  <p>Glad to see you back. <i className='bx bx-heart'></i></p>
+                  <input type="email" placeholder='Email' />
                 </div>
 
+                <div className='welcome-actions'>
+
+                  <button className='g-st'>Next</button>
+
+                  <div className='h-ac'>
+
+                    <p onClick={() => setDisplay('intro')}>Cancel</p>
+
+                  </div>
+
+                </div>
               </div>
+
             </div>
           </>
         ) : display == 'sign-up' ? (
@@ -152,8 +160,8 @@ const Start = () => {
                           <>
                             <img title='Remove Image' className='input-picture-close' src={assets.close_icon} alt="" onClick={() => {
                               setInputPicture(null)
-                              setFormData((prev) => ({...prev, display_picture: null}))
-                            } } />
+                              setFormData((prev) => ({ ...prev, display_picture: null }))
+                            }} />
                           </>
                         ) : (
                           <>
@@ -207,8 +215,6 @@ const Start = () => {
                       }}>
                         {passwordVisible ? <i className="bi bi-eye-slash"></i> : <i className="bi bi-eye"></i>}
                       </button>
-
-
                     </div>
 
                   </form>
@@ -219,17 +225,7 @@ const Start = () => {
               <div className='welcome-actions'>
 
                 <button className='g-st' onClick={() => handleSignUp()}>
-                  {
-                    loadingSignUp ? (
-                      <>
-                        Loading...
-                      </>
-                    ) : (
-                      <>
-                        Done
-                      </>
-                    )
-                  }
+                  {loadingSignUp ? 'Loading' : 'Done'}
                 </button>
 
                 <div className='h-ac'>
