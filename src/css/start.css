@@ -66,10 +66,11 @@
 .welcome-actions {
   padding: 10px 0;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  z-index: 2;
 }
 
 .g-st {
@@ -102,6 +103,14 @@
 
 .h-ac p {
   margin: 0;
+  border: 2px solid green;
+  padding: 15px 0;
+  /* width: 100%; */
+  text-align: center;
+}
+
+.cancel {
+  width: 100%;
 }
 
 .h-ac button img {
@@ -306,6 +315,10 @@
 }
 
 .sign-up .content {
-  position: relative;
+  /* position: relative; */
   z-index: 2 !important;
+}
+
+.content > * {
+  z-index: 3 !important;
 }

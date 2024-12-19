@@ -233,7 +233,7 @@ const Start = () => {
                 </button>
 
                 <div className='h-ac'>
-                  <p onClick={() => setDisplay('intro')}>Cancel</p>
+                  <p className='cancel' onClick={() => setDisplay('intro')}>Cancel</p>
                 </div>
 
               </div>
