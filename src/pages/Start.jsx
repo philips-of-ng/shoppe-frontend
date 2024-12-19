@@ -29,8 +29,6 @@ const Start = () => {
   const [loadingSignUp, setLoadingSignUp] = useState(false)
 
 
-
-
   const handleSignUp = () => {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 
@@ -47,18 +45,7 @@ const Start = () => {
       toast.error(`Please create a password...`)
       return
     } else if (!passwordRegex.test(formData.password)) {
-      toast.error(`Ensure password contains:
       
-        - One uppercase character
-
-        - One lowercase character
-
-        - One digit
-
-        - At least 8 characters
-
-        - At least one special character
-        `)
     }
 
     formData.fullName = `${formData.firstName} ${formData.lastName}`
@@ -66,11 +53,8 @@ const Start = () => {
     console.log(dataObject);
     console.log(dataObject.display_picture);
 
-
     try {
-
       const api = 'http://localhost:3020'
-      // setLoadingSignUp(true)
       
     } catch (error) {
       
@@ -83,7 +67,7 @@ const Start = () => {
   return (
     // THIS THE LANDING PART
 
-    <>
+    <div className='start-element'>
       {
         display == 'intro' ? (
           <>
@@ -260,7 +244,7 @@ const Start = () => {
         )
       }
 
-    </>
+    </div>
 
 
 
