@@ -34,49 +34,57 @@ const Start = () => {
       }
 
 
-      {
-        display == 'intro' ? (
-          <>
-            <div className='intro fade-in'>
 
-              <div className='welcome'>
 
-                <div>
 
-                  <div className='center-circle'>
-                    <img src={assets.first_logo} alt="" />
+      <div>
+        {
+          display == 'intro' ? (
+            <>
+              <div className='intro fade-in'>
+
+                <div className='welcome'>
+
+                  <div>
+
+                    <div className='center-circle'>
+                      <img src={assets.first_logo} alt="" />
+                    </div>
+                    <h1>Shoppe</h1>
+                    <p>We've got everything you need. Right at your fingertips.</p>
+
                   </div>
-                  <h1>Shoppe</h1>
-                  <p>We've got everything you need. Right at your fingertips.</p>
 
                 </div>
 
-              </div>
+                <div className='welcome-actions'>
 
-              <div className='welcome-actions'>
+                  <button onClick={() => setDisplay('sign-up')} className='g-st'>Let's get started</button>
 
-                <button onClick={() => setDisplay('sign-up')} className='g-st'>Let's get started</button>
+                  <div className='h-ac'>
+                    <p>Already have an account?</p>
+                    <button onClick={() => { setDisplay('login') }}><img src={assets.right_arrow} alt="" /></button>
+                  </div>
 
-                <div className='h-ac'>
-                  <p>Already have an account?</p>
-                  <button onClick={() => { setDisplay('login') }}><img src={assets.right_arrow} alt="" /></button>
                 </div>
-
               </div>
-            </div>
-          </>
-        ) : display == 'login' ? (
-          <>
-            <Login setDisplay={setDisplay} />
-          </>
-        ) : display == 'sign-up' ? (
-          <>
-            <SignUp setDisplay={setDisplay} />
-          </>
-        ) : (
-          <></>
-        )
-      }
+            </>
+          ) : display == 'login' ? (
+            <>
+              <Login setDisplay={setDisplay} />
+            </>
+          ) : display == 'sign-up' ? (
+            <>
+              <SignUp setDisplay={setDisplay} />
+            </>
+          ) : (
+            <></>
+          )
+        }
+      </div>
+
+
+
 
     </div>
 
