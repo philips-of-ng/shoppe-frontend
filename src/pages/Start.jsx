@@ -16,29 +16,20 @@ const Start = () => {
   const [display, setDisplay] = useState('intro')
 
 
-
-
-
   return (
     // THIS THE LANDING PART
 
     <div className='start-element'>
 
       {
-        display == 'sign-up' ? (
-          <>
-            <div className='shape shape-1'></div>
-            <div className='shape shape-2'></div>
-            <div className='shape shape-3'></div>
-          </>
-        ) : display == 'login' ? (
-          <>
-            <div className='shape shape-1'></div>
-            <div className='shape shape-2'></div>
-            <div className='shape shape-3'></div>
-          </>
-        ) : (
+        display == 'intro' ? (
           <></>
+        ) : (
+          <>
+            <div className='shape shape-1'></div>
+            <div className='shape shape-2'></div>
+            <div className='shape shape-3'></div>
+          </>
         )
       }
 

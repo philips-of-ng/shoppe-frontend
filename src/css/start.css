@@ -331,3 +331,35 @@
 .login, .sign-up, .welcome {
   z-index: 2 !important;
 } */
+
+.content-2 {
+  z-index: 2;
+}
+
+.login-prof {
+  width: fit-content;
+  height: fit-content;
+  margin: 20px auto;
+}
+
+.login-prof i {
+  font-size: 70px;
+  font-weight: 100;
+  color: grey;
+}
+
+.circles {
+  margin: 20px auto;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+
+.one-circle {
+  width: 30px;
+  height: 30px;
+  background-color: blue;
+  border-radius: 100%;
+}
