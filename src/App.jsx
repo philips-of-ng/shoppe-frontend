@@ -11,7 +11,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
-    document.title = 'Shoppe'
+    document.title = 'Shoppe 2'
   })
 
   return (

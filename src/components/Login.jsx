@@ -44,7 +44,7 @@ const Login = ({ setDisplay }) => {
       </div> */}
 
 
-      <div className='content-2'>
+      <div className='content-2 fade-in'>
         <div className='login-top'>
 
           <div className='login-prof'>
@@ -53,6 +53,9 @@ const Login = ({ setDisplay }) => {
 
           <div>
 
+            <p className='enter-pc' >Enter your 8-digit Passcode</p>
+
+            
             <div className='circles'>
               {
                 passwordCharacter.map((char, index) => {
@@ -63,12 +66,12 @@ const Login = ({ setDisplay }) => {
               }
             </div>
 
-            <input maxLength={8} type="text" ref={passwordRef} onChange={() => {
+            <input style={{display: 'none'}} maxLength={8} type="text" ref={passwordRef} onChange={() => {
               console.log(passwordRef.current.value);
               const thePassword = passwordRef.current.value
               console.log('Split Password', thePassword.split(''));
               setPasswordCharacter(thePassword.split(''))  
-            }} />
+            }} autoFocus />
 
 
 
