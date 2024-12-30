@@ -50,7 +50,7 @@ const Start = () => {
                     <div className='center-circle'>
                       <img src={assets.first_logo} alt="" />
                     </div>
-                    <h1>Shoppe</h1>
+                    <h1 className='pt-text'>Shoppe</h1>
                     <p>We've got everything you need. Right at your fingertips.</p>
 
                   </div>

@@ -86,7 +86,7 @@ const SignUp = ({ setDisplay }) => {
   return (
     <div className="sign-up fade-in">
       <div className="content">
-        <h1>
+        <h1 className='pt-text'>
           Create <br /> Account
         </h1>
 

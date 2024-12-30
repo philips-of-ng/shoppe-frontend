@@ -1,3 +1,5 @@
+/* THIS IS THE CSS FILE FOR START.JSX, LOGIN.JSX AND SIGNUP.JSX */
+
 :root {
   --the-blue: #004CFF;
 }
@@ -5,10 +7,12 @@
 .start-element {
   width: 100vw;
   max-width: 100vw;
-  overflow: hidden; /* Ensures no horizontal scrollbars */
+  overflow: hidden;
+  /* Ensures no horizontal scrollbars */
 
   position: relative;
 }
+
 
 .intro {
   padding: 12px;
@@ -19,7 +23,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden; /* Prevents unintentional overflow */
+  overflow: hidden;
+  /* Prevents unintentional overflow */
 }
 
 .welcome {
@@ -32,13 +37,18 @@
   height: 70vh;
 }
 
-.welcome > div {
+.pt-text {
+  font-size: 45px;
+  font-weight: 700;
+}
+
+.welcome>div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.welcome > div h1 {
+.welcome>div h1 {
   margin: 20px 0;
 }
 
@@ -122,7 +132,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  overflow: hidden; /* Ensures no scrollbars */
+  overflow: hidden;
+  /* Ensures no scrollbars */
 }
 
 .login-top {
@@ -138,11 +149,46 @@
   width: 100%;
   padding: 20px 12px;
   border: none;
+  background-color: #F1F1F1;
+  border-radius: 15px;
+  outline: none;
+  margin: 10px 0;
+}
+
+.content-2 {
+  z-index: 2;
+}
+
+.content-2 p {
+  text-align: center;
+}
+
+.login-prof {
+  width: fit-content;
+  height: fit-content;
+  margin: 20px auto;
+}
+
+.login-prof i {
+  font-size: 70px;
+  color: grey;
+}
+
+.login .input-div input {
+  padding: 0;
+}
+
+/* .login-top input {
+  width: 100%;
+  padding: 20px 12px;
+  border: none;
   margin: 20px 0;
   background-color: #F8F8F8;
   border-radius: 15px;
   outline: none;
-}
+} */
+
+
 
 /* SIGNUP PART */
 
@@ -155,7 +201,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  overflow: hidden; /* Prevents scrollbars */
+  overflow: hidden;
+  /* Prevents scrollbars */
 }
 
 .sign-up h1 {
@@ -178,7 +225,7 @@
 }
 
 .name-inputs input,
-.f-con form > input {
+.f-con form>input {
   flex: 1;
   padding: 20px 12px;
   border: none;
@@ -191,7 +238,7 @@
   display: flex;
   justify-content: space-between;
   padding: 12px;
-  background-color: #F8F8F8;
+  background-color: #F1F1F1;
   border-radius: 15px;
   outline: none;
 }
@@ -200,6 +247,7 @@
   background-color: transparent;
   border: none;
   outline: none;
+  width: 80%;
 }
 
 .input-div button {
@@ -240,6 +288,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -289,42 +338,11 @@
   z-index: 2;
 }
 
-.content > * {
+.content>* {
   z-index: 3;
 }
 
-.content-2 {
-  z-index: 2;
-}
 
-.content-2 p {
-  text-align: center;
-}
 
-.login-prof {
-  width: fit-content;
-  height: fit-content;
-  margin: 20px auto;
-}
 
-.login-prof i {
-  font-size: 70px;
-  color: grey;
-}
 
-.circles {
-  margin: 20px auto;
-  height: 50px;
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  width: 320px;
-  gap: 10px;
-}
-
-.one-circle {
-  width: 30px;
-  height: 30px;
-  background-color: blue;
-  border-radius: 100%;
-}
