@@ -21,7 +21,7 @@ const Start = () => {
 
     <div className='start-element'>
 
-      {
+      {/* {
         display == 'intro' ? (
           <></>
         ) : (
@@ -31,7 +31,7 @@ const Start = () => {
             <div className='shape shape-3'></div>
           </>
         )
-      }
+      } */}
 
 
 
@@ -83,14 +83,7 @@ const Start = () => {
         }
       </div>
 
-
-
-
     </div>
-
-
-
-
 
   )
 }

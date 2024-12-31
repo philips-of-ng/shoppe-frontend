@@ -1,0 +1,215 @@
+/* LOGIN PART */
+
+.login {
+  font-family: 'Raleway', 'Poppins';
+  height: 100vh !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  position: relative;
+}
+
+.login .content {
+  padding: 12px;
+}
+
+.login .content-2 {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between !important;
+  height: 100vh;
+}
+
+.login .floater {
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lb-1 {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.lb-2 {
+  position: absolute;
+  top: 0;
+}
+
+.lb-3 {
+  position: absolute;
+  bottom: 50%;
+  right: 0;
+}
+
+.lb-4 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+
+.login-top {
+  width: 100%;
+}
+
+.login-top h1 {
+  margin: 12px 0;
+  font-size: 45px;
+}
+
+.login-top input {
+  width: 100%;
+  padding: 20px 12px;
+  border: none;
+  background-color: #F1F1F1;
+  border-radius: 15px;
+  outline: none;
+  margin: 10px 0;
+}
+
+.content-2 {
+  z-index: 2;
+}
+
+.content-2 p {
+  text-align: center;
+}
+
+.login-prof {
+  width: fit-content;
+  height: fit-content;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.login-prof img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 5px solid white;
+}
+
+.login h2 {
+  margin: 12px 0;
+}
+
+.login .input-div input {
+  padding: 0;
+}
+
+
+.welcome-actions {
+  padding: 10px 0;
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.g-st {
+  width: 100%;
+  padding: 20px;
+  border: none;
+  color: white;
+  background-color: var(--the-blue);
+  border-radius: 12px;
+}
+
+.h-ac {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0;
+  gap: 10px;
+}
+
+.h-ac button {
+  background-color: var(--the-blue);
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h-ac p {
+  margin: 0;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.cancel {
+  width: 100%;
+}
+
+.h-ac button img {
+  margin: 0;
+}
+
+
+.name-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.name-inputs input,
+.f-con form>input {
+  flex: 1;
+  padding: 20px 12px;
+  border: none;
+  background-color: #F8F8F8;
+  border-radius: 15px;
+  outline: none;
+}
+
+.input-div {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: #F1F1F1;
+  border-radius: 15px;
+  outline: none;
+}
+
+.input-div input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 80%;
+}
+
+.input-div button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.input-div button i {
+  font-size: 30px;
+}
+
+
+.fade-in {
+  animation: fade-in 0.7s linear;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+

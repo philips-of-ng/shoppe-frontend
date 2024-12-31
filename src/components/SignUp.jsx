@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { assets } from '../assets/images/images';
 import '../css/start.css';
+import '../css/signup.css'
 import { toast } from 'react-toastify';
 
 const SignUp = ({ setDisplay }) => {
@@ -85,6 +86,16 @@ const SignUp = ({ setDisplay }) => {
 
   return (
     <div className="sign-up fade-in">
+
+      <div className='sb-1'>
+        <img src={assets.signup_bubble_01} alt="" />
+      </div>
+
+      <div className='sb-2'>
+        <img src={assets.signup_bubble_02} alt="" />
+      </div>
+
+
       <div className="content">
         <h1 className='pt-text'>
           Create <br /> Account
@@ -245,23 +256,27 @@ const SignUp = ({ setDisplay }) => {
             </div>
           </form>
         </div>
-      </div>
 
-      <div className="welcome-actions">
-        <button
-          className="g-st"
-          disabled={loadingSignUp}
-          onClick={handleSignUp}
-        >
-          {loadingSignUp ? 'Loading...' : 'Done'}
-        </button>
 
-        <div className="h-ac">
-          <p className="cancel" onClick={() => setDisplay('intro')}>
-            Cancel
-          </p>
+
+        <div className="welcome-actions">
+          <button
+            className="g-st"
+            disabled={loadingSignUp}
+            onClick={handleSignUp}
+          >
+            {loadingSignUp ? 'Loading...' : 'Done'}
+          </button>
+
+          <div className="h-ac">
+            <p className="cancel" onClick={() => setDisplay('intro')}>
+              Cancel
+            </p>
+          </div>
         </div>
       </div>
+
+
     </div>
   );
 };

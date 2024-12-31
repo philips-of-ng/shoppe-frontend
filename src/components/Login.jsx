@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import '../css/start.css'
+// import '../css/start.css'
+import '../css/login.css'
 import { useRef } from 'react'
+import { assets } from '../assets/images/images'
 
 const Login = ({ setDisplay }) => {
 
@@ -11,6 +13,7 @@ const Login = ({ setDisplay }) => {
   const otpRef = useRef()
 
   const [logingIn, setLogingIn] = useState(false)
+  const [pwTrialCount, setPwTrialCount] = useState(0)
 
   const [loginInfo, setLoginInfo] = useState({
     email: '',
@@ -43,7 +46,7 @@ const Login = ({ setDisplay }) => {
   const handleLogin = () => {
 
     setLogingIn(true)
-    
+
     console.log('This is the login info', loginInfo);
     const loginPayload = {
       email: loginInfo.email,
@@ -55,6 +58,32 @@ const Login = ({ setDisplay }) => {
 
   return (
     <div className='login fade-in'>
+
+      <div className='lb-1'>
+        <img src={assets.login_bubble_01} alt="" />
+      </div>
+
+      <div className='lb-2'>
+        <img src={assets.login_bubble_02} alt="" />
+      </div>
+
+      {
+        collectedInfo.nil == 'yes' ? (
+          <>
+            <div className='lb-3'>
+              <img src={assets.login_bubble_03} alt="" />
+            </div>
+
+            <div className='lb-4'>
+              <img src={assets.login_bubble_04} alt="" />
+            </div>
+          </>
+        ) : (
+          <></>
+        )
+      }
+
+
 
       {
         collectedInfo.nil == 'yes' ? (
@@ -80,40 +109,45 @@ const Login = ({ setDisplay }) => {
         ) : collectedInfo.email == 'yes' ? (
 
           <div className='content-2 fade-in'>
-            <div className='login-top'>
 
-              <div className='login-prof'>
-                <i class='bx bx-user-circle'></i>
-              </div>
+            <div className='floater'>
+              <div className='login-top'>
 
-              <div className='my-4'>
+                <div className='login-prof'>
+                  <img src={assets.user_image} alt="" />
 
-                <p className='enter-pc' >Enter your password</p>
-
-                <div className="input-div">
-
-                  <input type={passwordVisible ? 'text' : 'password'} placeholder='Password' ref={passwordRef} onChange={() => {
-                    console.log(passwordRef.current.value);
-                    const thePassword = passwordRef.current.value
-                  }} />
-
-                  <button onClick={(e) => {
-                    e.preventDefault();
-                    setPasswordVisible((prev) => !prev);
-                  }}
-                  >
-                    {passwordVisible ? (
-                      <i className="bi bi-eye-slash"></i>
-                    ) : (
-                      <i className="bi bi-eye"></i>
-                    )}
-                  </button>
+                  <h2>Hello, Philips!</h2>
                 </div>
 
+                <div className='my-4'>
 
+                  <p className='enter-pc' >Enter your password</p>
+
+                  <div className="input-div">
+
+                    <input type={passwordVisible ? 'text' : 'password'} placeholder='Password' ref={passwordRef} onChange={() => {
+                      console.log(passwordRef.current.value);
+                      const thePassword = passwordRef.current.value
+                    }} />
+
+                    <button onClick={(e) => {
+                      e.preventDefault();
+                      setPasswordVisible((prev) => !prev);
+                    }}
+                    >
+                      {passwordVisible ? (
+                        <i className="bi bi-eye-slash"></i>
+                      ) : (
+                        <i className="bi bi-eye"></i>
+                      )}
+                    </button>
+                  </div>
+
+
+
+                </div>
 
               </div>
-
             </div>
 
             <div className='welcome-actions'>
@@ -121,7 +155,8 @@ const Login = ({ setDisplay }) => {
               <button onClick={collectPassword} className='g-st'>{logingIn ? 'Loading...' : 'Next'}</button>
 
               <div className='h-ac'>
-                <p onClick={() => setDisplay('intro')}>Cancel</p>
+                <p>Not you?</p>
+                <button onClick={() => { setDisplay('login') }}><img src={assets.right_arrow} alt="" /></button>
               </div>
 
             </div>
