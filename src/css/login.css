@@ -92,6 +92,8 @@
   height: 100px;
   border-radius: 100%;
   border: 5px solid white;
+  object-fit: cover;
+  object-position: center;
 }
 
 .login h2 {

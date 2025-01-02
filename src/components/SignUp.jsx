@@ -3,6 +3,7 @@ import { assets } from '../assets/images/images';
 import '../css/start.css';
 import '../css/signup.css'
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const SignUp = ({ setDisplay }) => {
   // Password visibility states
@@ -41,37 +42,49 @@ const SignUp = ({ setDisplay }) => {
     } else if (!formData.password) {
       toast.error('Please create a password...');
       return;
-    } else if (!passwordRegex.test(formData.password)) {
-      toast.error(
-        'Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character.'
-      );
-      return;
-    } else if (formData.password !== formData.rePassword) {
+    } 
+    
+    // else if (!passwordRegex.test(formData.password)) {
+    //   toast.error(
+    //     'Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character.'
+    //   );
+    //   return;} 
+      
+      else if (formData.password !== formData.rePassword) {
       toast.error('Passwords do not match.');
       return;
     }
 
     formData.fullName = `${formData.firstName} ${formData.lastName}`;
-    const dataObject = formData;
+
+    const dataObject = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      fullName: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+      displayPicture: 'link-to-pic'
+    };
 
     console.log(dataObject);
-    console.log(dataObject.display_picture);
+    // console.log(dataObject.display_picture);
 
     try {
       setLoadingSignUp(true);
-      const api = 'http://localhost:3020';
-      const response = await fetch(`${api}/signup`, {
-        method: 'POST',
-        body: JSON.stringify(dataObject),
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      if (!response.ok) throw new Error('Sign-up failed.');
-
+      const api = 'http://localhost:5000/api/users';
+      const response = await axios.post(api, dataObject)
+      console.log('Response', response);
       toast.success('Sign-up successful!');
+      toast.success('Redirecting you to login page')
+      setTimeout(() => {
+        setDisplay('login')
+      }, 5000);
     } catch (error) {
+      if (error.status == 409) {
+        toast.error('A user with the same email already exists in our database')
+      }
       console.error('Error signing up:', error);
-      toast.error('Something went wrong. Please try again.');
+      // toast.error('Something went wrong. Please try again.');
     } finally {
       setLoadingSignUp(false);
     }

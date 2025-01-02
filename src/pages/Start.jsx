@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../css/start.css'
 import { assets } from '../assets/images/images'
 import { useState } from 'react'
@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
+import axios from 'axios';
 
 const Start = () => {
 
@@ -20,22 +21,6 @@ const Start = () => {
     // THIS THE LANDING PART
 
     <div className='start-element'>
-
-      {/* {
-        display == 'intro' ? (
-          <></>
-        ) : (
-          <>
-            <div className='shape shape-1'></div>
-            <div className='shape shape-2'></div>
-            <div className='shape shape-3'></div>
-          </>
-        )
-      } */}
-
-
-
-
 
       <div>
         {

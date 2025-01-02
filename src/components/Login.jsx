@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import '../css/login.css'
 import { useRef } from 'react'
 import { assets } from '../assets/images/images'
+import axios from 'axios'
 
 const Login = ({ setDisplay }) => {
 
@@ -10,7 +11,6 @@ const Login = ({ setDisplay }) => {
 
   const emailRef = useRef()
   const passwordRef = useRef()
-  const otpRef = useRef()
 
   const [logingIn, setLogingIn] = useState(false)
   const [pwTrialCount, setPwTrialCount] = useState(0)
@@ -27,23 +27,35 @@ const Login = ({ setDisplay }) => {
     password: 'no'
   })
 
-  const collectEmail = (e) => {
+  const [checkingEmail, setCheckingEmail] = useState(false)
+  const [checkingPassword, setCheckingPassword] = useState(false)
+  const [userProfile, setUserProfile] = useState({})
+
+  const collectEmail = async (e) => {
     e.preventDefault()
     console.log('This is the email from the ref', emailRef.current.value);
     setLoginInfo((prev) => ({ ...prev, email: emailRef.current.value }))
     setCollectedInfo((prev) => ({ ...prev, nil: 'no', email: 'yes' }))
+
+    try {
+      setCheckingEmail(true)
+      const userProf = await axios.get(`http://localhost:5000/api/users/${emailRef.current.value}`)
+      console.log('User Profile', userProf.data);
+      setUserProfile(userProf.data)      
+    } catch (error) {
+      console.log('Error fetching user data', error);
+    }
   }
 
   const collectPassword = (e) => {
     e.preventDefault()
     console.log('This is the password from the ref', passwordRef.current.value);
     setLoginInfo((prev) => ({ ...prev, password: passwordRef.current.value }))
-
     handleLogin()
   }
 
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
 
     setLogingIn(true)
 
@@ -54,6 +66,18 @@ const Login = ({ setDisplay }) => {
     }
 
     console.log('PAYLOAD', loginPayload);
+
+    try {
+      const response = axios.get('http://localhost:5000/api/users', {
+        params: {
+          email: emailRef.current.value
+        }
+      })
+      console.log('This is the response', response);
+
+    } catch (error) {
+
+    }
   }
 
   return (
@@ -114,9 +138,9 @@ const Login = ({ setDisplay }) => {
               <div className='login-top'>
 
                 <div className='login-prof'>
-                  <img src={assets.user_image} alt="" />
+                  <img src={userProfile.displayPicture} alt="" />
 
-                  <h2>Hello, Philips!</h2>
+                  <h2>Hello, {userProfile.firstName}!</h2>
                 </div>
 
                 <div className='my-4'>
