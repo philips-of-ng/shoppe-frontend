@@ -9,6 +9,8 @@ import login_bubble_04 from './login_bubble_04.png'
 import signup_bubble_01 from './signup_bubble_01.png'
 import signup_bubble_02 from './signup_bubble_02.png'
 import user_image from './user_image.png'
+import fgt_bubble_01 from './fgt_bubble_01.png'
+import fgt_bubble_02 from './fgt_bubble_02.png'
 
 export const assets = {
   first_logo,
@@ -21,5 +23,7 @@ export const assets = {
   login_bubble_04,
   signup_bubble_01,
   signup_bubble_02,
-  user_image
+  user_image,
+  fgt_bubble_01,
+  fgt_bubble_02
 }

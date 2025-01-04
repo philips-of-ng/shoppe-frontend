@@ -9,11 +9,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 import axios from 'axios';
+import ForgotPassword from '../components/ForgotPassword';
 
 const Start = () => {
 
   //THIS IS THE STATE THAT SETS WHAT IS CURRENTLY DISPLAYED
-  //VALUE - 'intro', 'login', 'sign-up'
+  //VALUE - 'intro', 'login', 'fgt-password' 'sign-up'
   const [display, setDisplay] = useState('intro')
 
 
@@ -57,6 +58,10 @@ const Start = () => {
           ) : display == 'login' ? (
             <>
               <Login setDisplay={setDisplay} />
+            </>
+          ) : display == 'fgt-password' ? (
+            <>
+              <ForgotPassword setDisplay={setDisplay}  />
             </>
           ) : display == 'sign-up' ? (
             <>

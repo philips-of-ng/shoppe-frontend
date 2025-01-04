@@ -4,6 +4,7 @@ import '../css/login.css'
 import { useRef } from 'react'
 import { assets } from '../assets/images/images'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const Login = ({ setDisplay }) => {
 
@@ -35,15 +36,28 @@ const Login = ({ setDisplay }) => {
     e.preventDefault()
     console.log('This is the email from the ref', emailRef.current.value);
     setLoginInfo((prev) => ({ ...prev, email: emailRef.current.value }))
-    setCollectedInfo((prev) => ({ ...prev, nil: 'no', email: 'yes' }))
 
     try {
       setCheckingEmail(true)
       const userProf = await axios.get(`http://localhost:5000/api/users/${emailRef.current.value}`)
-      console.log('User Profile', userProf.data);
-      setUserProfile(userProf.data)      
+
+      if (userProf) {
+        setCollectedInfo((prev) => ({ ...prev, nil: 'no', email: 'yes' }))
+        console.log('User Profile', userProf.data);
+        setUserProfile(userProf.data)
+        setCheckingEmail(false)
+      }
+
     } catch (error) {
       console.log('Error fetching user data', error);
+
+      if (error.message.toLowerCase() == 'network error') {
+        toast.error('Unable to connect or reach server')
+      } else if (error.status == 404) {
+        toast.error('No user with this email was found in our database')
+      } else {
+        toast.error('An error occured, please try again later')
+      }
     }
   }
 
@@ -151,7 +165,6 @@ const Login = ({ setDisplay }) => {
 
                     <input type={passwordVisible ? 'text' : 'password'} placeholder='Password' ref={passwordRef} onChange={() => {
                       console.log(passwordRef.current.value);
-                      const thePassword = passwordRef.current.value
                     }} />
 
                     <button onClick={(e) => {
@@ -167,7 +180,9 @@ const Login = ({ setDisplay }) => {
                     </button>
                   </div>
 
-
+                  <p className='my-2 fw-bold' onClick={() => {
+                    setDisplay('fgt-password')
+                  }}>Forgot your password?</p>
 
                 </div>
 
