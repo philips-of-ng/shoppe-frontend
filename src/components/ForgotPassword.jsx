@@ -7,6 +7,9 @@ import { toast } from 'react-toastify'
 const ForgotPassword = ({ setDisplay }) => {
 
   const emailRef = useRef('')
+  const OTPref = useRef('')
+  const newPasswordRef = useRef('')
+  const confirm_newPasswordRef = useRef('')
 
   const [refOTP, setRefOTP] = useState(null)
 
@@ -21,13 +24,18 @@ const ForgotPassword = ({ setDisplay }) => {
   }, [refOTP])
 
   //FUNTIONS
-
+  //CHECKS USER WITH EMAIL AND INVOKES THE RESET-PW FUNCTION
   const checkUser = async (email) => {
-    const getUserAPI = `http://localhost:5000/api/users/${emailRef.current.value}`
+    const getUserAPI = `http://localhost:5000/api/users/${email}`
     try {
       const response = await axios.get(getUserAPI)
       if (response.data) {
         setUserProfile(response.data)
+        console.log('User found:', response.data);
+
+        resetPassword(email)
+      } else {
+        toast.error('User not found')
       }
     } catch (error) {
       console.log('Error fetching user for reset password', error);
@@ -35,20 +43,18 @@ const ForgotPassword = ({ setDisplay }) => {
     }
   }
 
+  //FUNCTION USED TO GET THE OTP FROM API
   const resetPassword = async (email) => {
-
     const resetAPI = 'http://localhost:5000/api/users/reset-password'
     const payload = {
       email: email
     }
-
     try {
       //OTP REUQEST RESPONSE
       const response = await axios.post(resetAPI, payload)
       const refOTP = await response.data.otp
       console.log('Response', response);
       setRefOTP(refOTP)
-
       if (response.statusText == 'OK') {
         setView('otp')
       }
@@ -57,69 +63,129 @@ const ForgotPassword = ({ setDisplay }) => {
     }
   }
 
+  //VERIFY THE OTP
+  const verifyOTP = () => {
+    const OTP_validated = (refOTP == OTPref.current.value)
+    if (OTP_validated) {
+      setView('reset')
+    }
+  }
+
+  //ACTUALLY CHANGES THE PASSWORD
+  const changePassword = async () => {
+    const pw_change_api = `http://localhost:5000/api/users/change-password/${userProfile._id}`
+    const payload = {
+      newPassword: newPasswordRef.current.value,
+      email: userProfile.email
+    }
+
+    try {
+      const response = await axios.patch(pw_change_api, payload)
+      console.log('Response from changing password', response.data);
+    } catch (error) {
+      console.log('Error changing password', error);
+    }
+  }
+
+
   return (
     <div className='fgt-password fade-in'>
 
       <div className='fgtb-1'><img src={assets.fgt_bubble_01} alt="" /></div>
       <div className='fgtb-2'><img src={assets.fgt_bubble_02} alt="" /></div>
 
-      {/* <div className='content'>
-        <div className='fgt-top'>
-          <div className='floater'>
-            <h3 className='pt-text'>Reset Password</h3>
-            <p>Enter your email</p>
-            <input ref={emailRef} type="email" placeholder='Email' />
-          </div>
-        </div>
 
-        <div className='welcome-actions'>
+      {
+        view == 'mail' ? (
+          <>
+            <div className='content'>
+              <div className='fgt-top'>
+                <div className='floater'>
+                  <h3 className='pt-text'>Reset Password</h3>
+                  <p>Enter your email</p>
+                  <input ref={emailRef} type="email" placeholder='Email' />
+                </div>
+              </div>
 
-          <button onClick={() => resetPassword(emailRef.current.value)} className='g-st'>Next</button>
+              <div className='welcome-actions'>
 
-          <div className='h-ac'>
-            <p onClick={() => setDisplay('intro')}>Cancel</p>
-          </div>
+                <button onClick={() => checkUser(emailRef.current.value)} className='g-st'>Next</button>
 
-        </div>
-      </div> */}
+                <div className='h-ac'>
+                  <p onClick={() => setDisplay('intro')}>Cancel</p>
+                </div>
 
-
-      <div className='content-2'>
-        <div className='floater'>
-          <div className='login-top'>
-
-            <div className='login-prof fgt-prof'>
-              <img src={userProfile.displayPicture} alt="" />
-
-              <h2>Reset Password</h2>
+              </div>
             </div>
+          </>
+        ) : view == 'otp' ? (
+          <>
+            <div className='content-2'>
 
-            <div className='my-4'>
+              <div className='floater'>
+                <div className='profile-shower'>
+                  <img src={userProfile.displayPicture} alt="" />
 
-              <p>Enter your Email</p>
+                  <h2 className='my-3'>Hello, {userProfile.firstName}!</h2>
 
-              <input type="email"  />
+                  <p>Enter the 6-digit OTP sent your email</p>
 
-              {/* <p className='my-2 fw-bold' onClick={() => {
-                setDisplay('fgt-password')
-              }}>Forgot your password?</p> */}
+                  <input ref={OTPref} type="email" placeholder='Enter OTP' />
+                </div>
 
+              </div>
+
+
+              <div className='welcome-actions'>
+
+                <button onClick={() => verifyOTP()} className='g-st'>Next</button>
+
+                <div className='h-ac'>
+                  <p onClick={() => { setDisplay('login') }}>Back to Login</p>
+                  {/* <button ><img src={assets.right_arrow} alt="" /></button> */}
+                </div>
+
+              </div>
             </div>
+          </>
+        ) : view == 'reset' ? (
+          <>
+            <div className='content-2'>
 
-          </div>
-        </div>
+              <div className='floater'>
+                <div className='profile-shower'>
+                  <img src={userProfile.displayPicture} alt="" />
 
-        <div className='welcome-actions'>
+                  <h2 className='my-3'>Hello, {userProfile.firstName}!</h2>
 
-          <button className='g-st'>Next - Get OTP</button>
+                  <p>Create a new password for your account. It is advisable to use something you would remember.</p>
 
-          <div className='h-ac'>
-            <p>Not you?</p>
-            <button onClick={() => { setDisplay('login') }}><img src={assets.right_arrow} alt="" /></button>
-          </div>
+                  <input ref={newPasswordRef} type="email" placeholder='Enter New Password' />
 
-        </div>
-      </div>
+                  <input ref={confirm_newPasswordRef} type="email" placeholder='Confirm Password' />
+                </div>
+
+              </div>
+
+
+              <div className='welcome-actions'>
+
+                <button onClick={() => verifyOTP()} className='g-st'>Next</button>
+
+                <div className='h-ac'>
+                  <p onClick={() => { setDisplay('login') }}>Back to Login</p>
+                  {/* <button ><img src={assets.right_arrow} alt="" /></button> */}
+                </div>
+
+              </div>
+            </div>
+          </>
+        ) : (
+          <></>
+        )
+      }
+
+
     </div>
   )
 }
