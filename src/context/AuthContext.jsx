@@ -11,16 +11,13 @@ export const AuthProvide = ({ children }) => {
 
     if (storedUser) {
       setUser(storedUser)
-    } else {
-      setUser(null)
-    }
-  })
+    } 
+  }, [])
 
   const login = (userData) => {
     setUser(userData)
     localStorage.setItem('user', JSON.stringify(userData))
   }
-
 
   const logout = () => {
     setUser(null)
@@ -28,7 +25,7 @@ export const AuthProvide = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser, login, logout }}>
       { children }
     </AuthContext.Provider>
   )

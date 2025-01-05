@@ -11,7 +11,7 @@ import { AuthContext } from '../context/AuthContext'
 const Login = ({ setDisplay }) => {
 
   //stuffs from context API
-  const { setUser } = useContext(AuthContext)
+  const { login } = useContext(AuthContext)
 
   const [passwordVisible, setPasswordVisible] = useState(false)
 
@@ -20,12 +20,6 @@ const Login = ({ setDisplay }) => {
 
   const [logingIn, setLogingIn] = useState(false)
   const [loading, setLoading] = useState(false)
-
-  const [loginInfo, setLoginInfo] = useState({
-    email: '',
-    password: '',
-    otp: ''
-  })
 
   const [collectedInfo, setCollectedInfo] = useState({
     nil: 'yes',
@@ -87,10 +81,11 @@ const Login = ({ setDisplay }) => {
       console.log('Response from logging in', response);
       
       if (response.data) {
-        setUser(response.data.details)
+        login(response.data.details)
       }
     } catch (error) {
-      console.log('Error login in');
+      console.log(error);
+      
     }
   }
 

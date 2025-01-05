@@ -17,18 +17,9 @@ function App() {
 
   return (
     <Routes>
-      {
-        user ? (
-          <>
-            <Route path='/' element={<Home />} />
-          </>
-        ) : (
-          <>
-            <Route path='/' element={<Start />} />
-          </>
-        )
-      }
-      
+
+      <Route path='/' element={ user ? <Home /> : <Start />} />
+
     </Routes>
   );
 }
