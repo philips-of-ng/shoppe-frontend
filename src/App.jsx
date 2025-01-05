@@ -1,14 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 import Start from './pages/Start';
 import Home from './pages/Home';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false)
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
     document.title = 'Shoppe 2'
@@ -17,7 +18,7 @@ function App() {
   return (
     <Routes>
       {
-        loggedIn ? (
+        user ? (
           <>
             <Route path='/' element={<Home />} />
           </>

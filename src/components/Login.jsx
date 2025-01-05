@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 // import '../css/start.css'
 import '../css/login.css'
 import { useRef } from 'react'
@@ -6,18 +6,20 @@ import { assets } from '../assets/images/images'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import Spinner from './spinner'
+import { AuthContext } from '../context/AuthContext'
 
 const Login = ({ setDisplay }) => {
 
+  //stuffs from context API
+  const { setUser } = useContext(AuthContext)
+
   const [passwordVisible, setPasswordVisible] = useState(false)
 
-  const emailRef = useRef()
-  const passwordRef = useRef()
+  const emailRef = useRef('')
+  const passwordRef = useRef('')
 
   const [logingIn, setLogingIn] = useState(false)
   const [loading, setLoading] = useState(false)
-
-  const [pwTrialCount, setPwTrialCount] = useState(0)
 
   const [loginInfo, setLoginInfo] = useState({
     email: '',
@@ -68,33 +70,27 @@ const Login = ({ setDisplay }) => {
     }
   }
 
-  const collectPassword = (e) => {
-    e.preventDefault()
-    console.log('This is the password from the ref', passwordRef.current.value);
-    setLoginInfo((prev) => ({ ...prev, password: passwordRef.current.value }))
-    handleLogin()
-  }
-
 
   const handleLogin = async () => {
     setLogingIn(true)
-    console.log('This is the login info', loginInfo);
-    const loginPayload = {
-      email: loginInfo.email,
+    
+    const user_credentials = {
+      email: userProfile.email,
       password: passwordRef.current.value
     }
-    console.log('PAYLOAD', loginPayload);
+
+    console.log('Cred', user_credentials);
 
     try {
-      const response = axios.get('http://localhost:5000/api/users', {
-        params: {
-          email: emailRef.current.value
-        }
-      })
-      console.log('This is the response', response);
-
+      const login_api = 'http://localhost:5000/api/users/login'
+      const response = await axios.post(login_api, user_credentials)
+      console.log('Response from logging in', response);
+      
+      if (response.data) {
+        setUser(response.data.details)
+      }
     } catch (error) {
-
+      console.log('Error login in');
     }
   }
 
@@ -192,7 +188,7 @@ const Login = ({ setDisplay }) => {
 
             <div className='welcome-actions'>
 
-              <button onClick={collectPassword} className='g-st'>{loading ? <Spinner /> : 'Next'}</button>
+              <button onClick={() => handleLogin()} className='g-st'>{loading ? <Spinner /> : 'Next'}</button>
 
               <div className='h-ac'>
                 <p>Forgot password?</p>
