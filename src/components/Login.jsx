@@ -5,6 +5,7 @@ import { useRef } from 'react'
 import { assets } from '../assets/images/images'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import Spinner from './spinner'
 
 const Login = ({ setDisplay }) => {
 
@@ -14,6 +15,8 @@ const Login = ({ setDisplay }) => {
   const passwordRef = useRef()
 
   const [logingIn, setLogingIn] = useState(false)
+  const [loading, setLoading] = useState(false)
+
   const [pwTrialCount, setPwTrialCount] = useState(0)
 
   const [loginInfo, setLoginInfo] = useState({
@@ -28,8 +31,6 @@ const Login = ({ setDisplay }) => {
     password: 'no'
   })
 
-  const [checkingEmail, setCheckingEmail] = useState(false)
-  const [checkingPassword, setCheckingPassword] = useState(false)
   const [userProfile, setUserProfile] = useState({})
 
   const collectEmail = async (e) => {
@@ -38,19 +39,21 @@ const Login = ({ setDisplay }) => {
     setLoginInfo((prev) => ({ ...prev, email: emailRef.current.value }))
 
     try {
-      setCheckingEmail(true)
+      setLoading(true)
       const userProf = await axios.get(`http://localhost:5000/api/users/${emailRef.current.value}`)
 
       if (userProf) {
         setCollectedInfo((prev) => ({ ...prev, nil: 'no', email: 'yes' }))
         console.log('User Profile', userProf.data);
         setUserProfile(userProf.data)
-        setCheckingEmail(false)
+
+        setTimeout(() => {
+          setLoading(false)
+        }, 2000);
       }
 
     } catch (error) {
       console.log('Error fetching user data', error);
-
       if (error.message.toLowerCase() == 'network error') {
         toast.error('Unable to connect or reach server')
       } else if (error.status == 404) {
@@ -58,6 +61,10 @@ const Login = ({ setDisplay }) => {
       } else {
         toast.error('An error occured, please try again later')
       }
+    } finally {
+      setTimeout(() => {
+        setLoading(false)
+      }, 2000);
     }
   }
 
@@ -70,15 +77,12 @@ const Login = ({ setDisplay }) => {
 
 
   const handleLogin = async () => {
-
     setLogingIn(true)
-
     console.log('This is the login info', loginInfo);
     const loginPayload = {
       email: loginInfo.email,
       password: passwordRef.current.value
     }
-
     console.log('PAYLOAD', loginPayload);
 
     try {
@@ -135,7 +139,7 @@ const Login = ({ setDisplay }) => {
 
             <div className='welcome-actions'>
 
-              <button onClick={collectEmail} className='g-st'>Next</button>
+              <button onClick={collectEmail} className='g-st'>{ loading ? <Spinner /> : 'Next' }</button>
 
               <div className='h-ac'>
                 <p onClick={() => setDisplay('intro')}>Cancel</p>
@@ -180,9 +184,6 @@ const Login = ({ setDisplay }) => {
                     </button>
                   </div>
 
-                  <p className='my-2 fw-bold' onClick={() => {
-                    setDisplay('fgt-password')
-                  }}>Forgot your password?</p>
 
                 </div>
 
@@ -191,11 +192,11 @@ const Login = ({ setDisplay }) => {
 
             <div className='welcome-actions'>
 
-              <button onClick={collectPassword} className='g-st'>{logingIn ? 'Loading...' : 'Next'}</button>
+              <button onClick={collectPassword} className='g-st'>{loading ? <Spinner /> : 'Next'}</button>
 
               <div className='h-ac'>
-                <p>Not you?</p>
-                <button onClick={() => { setDisplay('login') }}><img src={assets.right_arrow} alt="" /></button>
+                <p>Forgot password?</p>
+                <button onClick={() => { setDisplay('fgt-password') }}><img src={assets.right_arrow} alt="" /></button>
               </div>
 
             </div>
