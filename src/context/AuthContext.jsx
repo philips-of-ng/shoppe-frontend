@@ -5,14 +5,33 @@ export const AuthContext = createContext()
 export const AuthProvide = ({ children }) => {
 
   const [user, setUser] = useState(null)
+  const [pwTrial, setPwTrial] = useState(0)
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'))
-
     if (storedUser) {
       setUser(storedUser)
-    } 
+    }
+
+    const trials = JSON.parse(localStorage.getItem('pwTrials'))
+    if (trials) {
+      setPwTrial(trials)
+    }
   }, [])
+
+
+  const maxTrials = 5
+  const handleTrialCount = () => {
+    if (pwTrial >= maxTrials) {
+      return 'Too many wrong trials, try again later'
+    }
+    setPwTrial((prev) => (prev + 1))
+    return 'done'
+  }
+
+  useEffect(() => {
+    localStorage.setItem('pwTrials', JSON.stringify(pwTrial));
+  }, [pwTrial]);
 
   const login = (userData) => {
     setUser(userData)
@@ -25,8 +44,8 @@ export const AuthProvide = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, logout }}>
-      { children }
+    <AuthContext.Provider value={{ user, login, logout, pwTrial, handleTrialCount }}>
+      {children}
     </AuthContext.Provider>
   )
 

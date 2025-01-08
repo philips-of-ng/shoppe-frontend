@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 // import '../css/start.css'
 import '../css/login.css'
 import { useRef } from 'react'
@@ -11,7 +11,10 @@ import { AuthContext } from '../context/AuthContext'
 const Login = ({ setDisplay }) => {
 
   //stuffs from context API
-  const { login } = useContext(AuthContext)
+  const { login, pwTrial, handleTrialCount } = useContext(AuthContext)
+  useEffect(() => {
+    console.log('Number of Password Trials', pwTrial);
+  })
 
   const [passwordVisible, setPasswordVisible] = useState(false)
 
@@ -32,7 +35,6 @@ const Login = ({ setDisplay }) => {
   const collectEmail = async (e) => {
     e.preventDefault()
     console.log('This is the email from the ref', emailRef.current.value);
-    setLoginInfo((prev) => ({ ...prev, email: emailRef.current.value }))
 
     try {
       setLoading(true)
@@ -42,10 +44,6 @@ const Login = ({ setDisplay }) => {
         setCollectedInfo((prev) => ({ ...prev, nil: 'no', email: 'yes' }))
         console.log('User Profile', userProf.data);
         setUserProfile(userProf.data)
-
-        setTimeout(() => {
-          setLoading(false)
-        }, 2000);
       }
 
     } catch (error) {
@@ -58,36 +56,53 @@ const Login = ({ setDisplay }) => {
         toast.error('An error occured, please try again later')
       }
     } finally {
-      setTimeout(() => {
-        setLoading(false)
-      }, 2000);
+      setLoading(false)
     }
   }
 
 
   const handleLogin = async () => {
-    setLogingIn(true)
-    
-    const user_credentials = {
-      email: userProfile.email,
-      password: passwordRef.current.value
-    }
+    setLoading(true);
 
-    console.log('Cred', user_credentials);
+    const userCredentials = {
+      email: userProfile.email,
+      password: passwordRef.current.value,
+    };
+
+    console.log('User Credentials:', userCredentials);
 
     try {
-      const login_api = 'http://localhost:5000/api/users/login'
-      const response = await axios.post(login_api, user_credentials)
-      console.log('Response from logging in', response);
-      
-      if (response.data) {
-        login(response.data.details)
+      const loginApi = 'http://localhost:5000/api/users/login';
+      const response = await axios.post(loginApi, userCredentials);
+
+      if (response?.data?.message?.toLowerCase() === 'wrong credentials') {
+        console.log('The response code check works');
+
+        const trialResult = handleTrialCount();
+        console.log('New Trial Count:', pwTrial);
+
+        if (trialResult === 'Too many wrong trials, try again later') {
+          toast.error(trialResult);
+        } else if (trialResult === 'done') {
+          toast.error('Wrong password, try again');
+        }
+      } else if (response?.data?.details) {
+        login(response.data.details);
+        toast.success('Login successful!');
       }
     } catch (error) {
-      console.log(error);
-      
+      console.error('Error during login:', error.response?.data || error.message);
+
+      if (error.response.data.message.toLowerCase() == 'wrong credentials') {
+        toast.error('Wrong password')
+      } else {
+        toast.error('An error occured, please try again.')
+      }
+    } finally {
+      setLoading(false);
     }
-  }
+  };
+
 
   return (
     <div className='login fade-in'>
@@ -130,7 +145,7 @@ const Login = ({ setDisplay }) => {
 
             <div className='welcome-actions'>
 
-              <button onClick={collectEmail} className='g-st'>{ loading ? <Spinner /> : 'Next' }</button>
+              <button onClick={collectEmail} className='g-st'>{loading ? <Spinner /> : 'Next'}</button>
 
               <div className='h-ac'>
                 <p onClick={() => setDisplay('intro')}>Cancel</p>
