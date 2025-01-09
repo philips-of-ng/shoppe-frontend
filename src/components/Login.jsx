@@ -173,7 +173,7 @@ const Login = ({ setDisplay }) => {
 
                   <div className="input-div">
 
-                    <input type={passwordVisible ? 'text' : 'password'} placeholder='Password' ref={passwordRef} onChange={() => {
+                    <input className='my-0' type={passwordVisible ? 'text' : 'password'} placeholder='Password' ref={passwordRef} onChange={() => {
                       console.log(passwordRef.current.value);
                     }} />
 

@@ -1,0 +1,20 @@
+
+
+.view {
+  width: 100vw !important;
+  height: 100vh !important;
+  /* border: 2px solid green; */
+}
+
+.view-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between !important;
+  height: 100%;
+  padding: 10px;
+}
+
+.view-content > div {
+  width: 100% !important;
+  overflow: hidden !important;
+}

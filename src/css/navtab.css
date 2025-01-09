@@ -1,0 +1,44 @@
+:root {
+  --the-blue: #004CFF;
+}
+
+
+.nav-tab {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding: 10px;
+  padding-bottom: 30px;
+  border-top: 2px solid #eae1e1;
+}
+
+.nav-tab button {
+  background-color: transparent;
+  border: none;
+}
+
+.nav-tab button i {
+  font-size: 30px;
+  color: var(--the-blue);
+}
+.nav-tab > .active > i {
+  color: black;
+}
+
+.nav-tab .active {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-tab .active::after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 3px; 
+  background-color: black;
+  bottom: -2px;
+  left: 50%; 
+  transform: translateX(-50%); 
+  z-index: 2;
+  border-radius: 2px;
+}

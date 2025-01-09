@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from './context/AuthContext';
+import View from './pages/View';
 
 function App() {
 
@@ -17,8 +18,8 @@ function App() {
 
   return (
     <Routes>
-
-      <Route path='/' element={ user ? <Home /> : <Start />} />
+      
+      <Route path='/*' element={ user ? <View /> : <Start />} />
 
     </Routes>
   );
