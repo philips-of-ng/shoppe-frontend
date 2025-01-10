@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import '../css/home.css'
+import '../css/home.css'
+import { assets } from '../assets/images/images';
 
 //IMPORTING REACT SLICK
 import Slider from 'react-slick'
@@ -16,12 +18,6 @@ const sliderSettings = {
   autoplay: true,
   autoplaySpeed: 3000
 }
-
-
-
-import Navtab from '../components/Navtab'
-import '../css/home.css'
-import { useLocation } from 'react-router-dom';
 
 const Home = () => {
 
@@ -48,23 +44,106 @@ const Home = () => {
       <div className='home-content'>
 
         {/* THE FIRST COMPONENT OF HOME PAGE */}
-        <Slider className='home-slider' {...sliderSettings}>
-          <div>Slide 1</div>
-          <div>Slide 2</div>
-          <div>Slide 3</div>
-          <div>Slide 4</div>
-          <div>Slide 5</div>
-        </Slider>
-        
+        <section className='home-section-one'>
+          <Slider className='home-slider' {...sliderSettings}>
+            <div className='one-slide'><img src={assets.shoppe_banner} alt="" /></div>
+            <div className='one-slide'><img src={assets.shoppe_banner} alt="" /></div>
+            <div className='one-slide'><img src={assets.shoppe_banner} alt="" /></div>
+            <div className='one-slide'><img src={assets.shoppe_banner} alt="" /></div>
+            <div className='one-slide'><img src={assets.shoppe_banner} alt="" /></div>
+          </Slider>
+        </section>
+
+
         {/* SECOND COMPONENT OF THE HOME PAGE - CATEGORIES */}
 
-        <div className='categories'>
+        <section className='home-section-two'>
+          <div className='categories'>
 
-          <div ct-top>
+            <div className='ct-top'>
+              <h2>Categories</h2>
+            </div>
+
+            <div className='ct-main'>
+
+              <div className="one-category">
+                <div className='one-cat-up'>
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                </div>
+
+                <div className='one-cat-down'>
+                  <p>Clothing</p>
+
+                  <span>109</span>
+                </div>
+              </div>
+              <div className="one-category">
+                <div className='one-cat-up'>
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                </div>
+
+                <div className='one-cat-down'>
+                  <p>Clothing</p>
+
+                  <span>109</span>
+                </div>
+              </div>
+              <div className="one-category">
+                <div className='one-cat-up'>
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                </div>
+
+                <div className='one-cat-down'>
+                  <p>Clothing</p>
+
+                  <span>109</span>
+                </div>
+              </div>
+              <div className="one-category">
+                <div className='one-cat-up'>
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                  <img src={assets.shoppe_banner} />
+                </div>
+
+                <div className='one-cat-down'>
+                  <p>Clothing</p>
+
+                  <span>109</span>
+                </div>
+              </div>
+
+
+              
+
+            </div>
 
           </div>
+        </section>
 
-        </div>
+
+        {/* THIRD COMPONENT OF THE HOME PAGE - CATEGORIES */}
+        <section className='home-section-three my-5'>
+          <div className='top-products'>
+            <div className='tp-top'>
+              <h2>Top Products</h2>
+            </div>
+
+            <div className='tp-main'>
+
+            </div>
+          </div>
+        </section>
 
 
       </div>
