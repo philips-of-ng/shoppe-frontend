@@ -36,7 +36,7 @@ const NavTab = () => {
         data-name="menu"
         onClick={() => navigate('/menu')}
       >
-        <i className='bx bx-list-ol' ></i>
+        <i class='bx bx-menu' ></i>
       </button>
       <button
         className={`one-nt-btn ${active.startsWith('/cart') ? 'active' : ''}`}

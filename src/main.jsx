@@ -7,16 +7,20 @@ import { BrowserRouter } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { AuthContext, AuthProvide } from './context/AuthContext.jsx'
+import { AuthContext, AuthProvider } from './context/AuthContext.jsx'
+import { ShopContext, ShopProvider } from './context/ShopContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <AuthProvide>
-    <React.StrictMode>
-      <ToastContainer />
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </React.StrictMode>
-  </AuthProvide>
+  <ShopProvider>
+    <AuthProvider>
+      <React.StrictMode>
+        <ToastContainer />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </React.StrictMode>
+    </AuthProvider>
+  </ShopProvider>
+
   ,
 )

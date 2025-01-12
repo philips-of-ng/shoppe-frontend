@@ -8,8 +8,12 @@
   align-items: start;
   justify-content: space-between;
   padding: 10px;
-  padding-bottom: 30px;
+  padding-bottom: 40px !important;
+
+  /* padding-bottom: env(safe-area-inset-bottom, 46px); */
+
   border-top: 2px solid #eae1e1;
+  /* border: 2px solid red; */
 }
 
 .nav-tab button {

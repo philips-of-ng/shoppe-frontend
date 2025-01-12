@@ -14,19 +14,19 @@ import fgt_bubble_02 from './fgt_bubble_02.png';
 import shoppe_banner from './shoppe_banner.png';
 
 // New imports
-import cat_bags_01 from 'src/assets/images/cat_bags_01.png';
-import cat_bags_02 from 'src/assets/images/cat_bags_02.png';
-import cat_bags_03 from 'src/assets/images/cat_bags_03.png';
-import cat_bags_04 from 'src/assets/images/cat_bags_04.png';
-import cat_clothing_01 from 'src/assets/images/cat_clothing_01.png';
-import cat_clothing_02 from 'src/assets/images/cat_clothing_02.png';
-import cat_clothing_03 from 'src/assets/images/cat_clothing_03.png';
-import cat_clothing_04 from 'src/assets/images/cat_clothing_04.png';
-import cat_shoes_01 from 'src/assets/images/cat_shoes_01.png';
-import cat_shoes_02 from 'src/assets/images/cat_shoes_02.png';
-import cat_shoes_03 from 'src/assets/images/cat_shoes_03.png';
-import cat_shoes_04 from 'src/assets/images/cat_shoes_04.png';
-import shoppe_banner_new from 'src/assets/images/shoppe_banner.png';
+import cat_bags_01 from './cat_bags_01.png';
+import cat_bags_02 from './cat_bags_02.png';
+import cat_bags_03 from './cat_bags_03.png';
+import cat_bags_04 from './cat_bags_04.png';
+import cat_clothing_01 from './cat_clothing_01.png';
+import cat_clothing_02 from './cat_clothing_02.png';
+import cat_clothing_03 from './cat_clothing_03.png';
+import cat_clothing_04 from './cat_clothing_04.png';
+import cat_shoes_01 from './cat_shoes_01.png';
+import cat_shoes_02 from './cat_shoes_02.png';
+import cat_shoes_03 from './cat_shoes_03.png';
+import cat_shoes_04 from './cat_shoes_04.png';
+import shoppe_banner_new from './shoppe_banner.png';
 
 export const assets = {
   first_logo,
