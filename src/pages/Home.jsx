@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import '../css/home.css'
 import '../css/home.css'
 import { assets } from '../assets/images/images';
+import { assets_2 } from '../assets/assets/assets';
 
 //IMPORTING REACT SLICK
 import Slider from 'react-slick'
@@ -10,7 +11,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import SectionHead from '../components/SectionHead';
 import OneProduct_S1 from '../components/OneProduct_S1';
-import { Outlet } from 'react-router-dom';
+import { ShopContext } from '../context/ShopContext';
 
 const sliderSettings = {
   dots: true,
@@ -27,8 +28,25 @@ const Home = () => {
   const { user } = useContext(AuthContext)
   useEffect(() => {
     console.log('User details from context API', user);
-
   }, [user])
+
+
+  //Products and Items Functions
+
+  const { allProducts, bestSellers, menClothing, womenClothing, childrenClothing, categories } = useContext(ShopContext)
+
+  console.log('Best sellers from home', bestSellers);
+
+  const getRepImages = (array) => {
+    const repImages = []
+    array.forEach(item => {
+      repImages.push(item.image[0])
+    });
+    return repImages
+  }
+
+  console.log('Men clothing rep images', getRepImages(menClothing));
+
 
 
   return (
@@ -40,7 +58,7 @@ const Home = () => {
 
         <div className='search-div'>
           <input type="text" placeholder='Search' />
-          <i class='bx bx-search-alt-2'></i>
+          <i className='bx bx-search-alt-2'></i>
         </div>
 
       </div>
@@ -64,11 +82,37 @@ const Home = () => {
         <section className='home-section-two'>
           <div className='categories'>
 
-           <SectionHead title={'Categories'} />
+            <SectionHead title={'Categories'} />
 
             <div className='ct-main'>
 
-              <div className="one-category">
+              {
+                categories.map((item, index) => (
+                  <>
+                    <div key={index} className="one-category">
+                      <div className='one-cat-up'>
+                        {/* complicated code, dont touch */}
+                        {
+                          getRepImages(item.products).slice(0, 4).map((image, imgIndex) => (
+                            <img key={imgIndex} src={image} />
+                          ))
+                        }
+
+                      </div>
+
+                      <div className='one-cat-down'>
+                        <p>{item.name}</p>
+
+                        <span>{item.length}</span>
+                      </div>
+                    </div>
+                  </>
+                ))
+              }
+
+
+              {/* PROTOTYPE JUST TO BE SAFE */}
+              {/* <div className="one-category">
                 <div className='one-cat-up'>
                   <img src={assets.shoppe_banner} />
                   <img src={assets.shoppe_banner} />
@@ -81,52 +125,9 @@ const Home = () => {
 
                   <span>109</span>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="one-category">
-                <div className='one-cat-up'>
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                </div>
-
-                <div className='one-cat-down'>
-                  <p>Clothing</p>
-
-                  <span>109</span>
-                </div>
-              </div>
-
-              <div className="one-category">
-                <div className='one-cat-up'>
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                </div>
-
-                <div className='one-cat-down'>
-                  <p>Clothing</p>
-
-                  <span>109</span>
-                </div>
-              </div>
-
-              <div className="one-category">
-                <div className='one-cat-up'>
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                </div>
-
-                <div className='one-cat-down'>
-                  <p>Clothing</p>
-
-                  <span>109</span>
-                </div>
-              </div>
+              
 
             </div>
 
@@ -134,40 +135,34 @@ const Home = () => {
         </section>
 
 
-        {/* THIRD COMPONENT OF THE HOME PAGE - CATEGORIES */}
+        {/* THIRD COMPONENT OF THE HOME PAGE - TOP PRODUCTS */}
         <section className='home-section-three my-2'>
           <div className='top-products'>
             <SectionHead title={'Top Products'} />
 
             <div className='tp-main'>
 
-              <div className='one-top-product'>
-                <img src={assets.shoppe_banner} alt="" />
-              </div>
+              {
+                bestSellers.map((item, index) => (
+                  <>
+                    <div key={index} className='one-top-product'>
+                      <img key={index} src={item.image[0]} alt="" />
+                    </div>
+                  </>
+                ))
+              }
+
+              {/* PROTOTYPE OF ITEMS IN THIS SECTION */}
 
               <div className='one-top-product'>
                 <img src={assets.shoppe_banner} alt="" />
               </div>
 
-              <div className='one-top-product'>
-                <img src={assets.shoppe_banner} alt="" />
-              </div>
-              <div className='one-top-product'>
-                <img src={assets.shoppe_banner} alt="" />
-              </div>
-              <div className='one-top-product'>
-                <img src={assets.shoppe_banner} alt="" />
-              </div>
-              <div className='one-top-product'>
-                <img src={assets.shoppe_banner} alt="" />
-              </div>
-              <div className='one-top-product'>
-                <img src={assets.shoppe_banner} alt="" />
-              </div>
-              <div className='one-top-product'>
-                <img src={assets.shoppe_banner} alt="" />
-              </div>
+              {/* see more button */}
 
+              <div className='one-top-product'>
+                <img style={{ width: '50%', height: '50%' }} src={assets_2.dropdown_icon} alt="" />
+              </div>
 
 
             </div>
@@ -181,10 +176,18 @@ const Home = () => {
             <SectionHead title={'New Items'} />
 
             <div className='new-items-main'>
-              <OneProduct_S1 image={assets.cat_bags_02} name={'A fine pink bag with long handles'} price={'17.99'}  />
-              <OneProduct_S1 image={assets.cat_bags_02} name={'A fine pink bag with long handles'} price={'17.99'}  />
-              <OneProduct_S1 image={assets.cat_bags_02} name={'A fine pink bag with long handles'} price={'17.99'}  />
-              <OneProduct_S1 image={assets.cat_bags_02} name={'A fine pink bag with long handles'} price={'17.99'}  />
+
+              {
+                allProducts.slice(0, 10).reverse().map((item, index) => (
+                  <>
+                    <OneProduct_S1 image={item.image[0]} name={item.name} price={item.price} />
+                  </>
+                ))
+              }
+              <OneProduct_S1 image={assets.cat_bags_02} name={'A fine pink bag with long handles'} price={'17.99'} />
+              <OneProduct_S1 image={assets.cat_bags_02} name={'A fine pink bag with long handles'} price={'17.99'} />
+              <OneProduct_S1 image={assets.cat_bags_02} name={'A fine pink bag with long handles'} price={'17.99'} />
+              <OneProduct_S1 image={assets.cat_bags_02} name={'A fine pink bag with long handles'} price={'17.99'} />
 
 
             </div>
@@ -202,11 +205,11 @@ const Home = () => {
               </div>
 
               <div className='fst-right'>
-              <i class='bx bx-timer' ></i>
+                <i className='bx bx-timer' ></i>
 
-              <span>00</span>
-              <span>19</span>
-              <span>34</span>
+                <span>00</span>
+                <span>19</span>
+                <span>34</span>
               </div>
             </div>
 
@@ -232,7 +235,7 @@ const Home = () => {
               <div className='one-fs-item'>
                 <img src={assets.cat_bags_04} alt="" />
               </div>
-              
+
 
             </div>
 
@@ -250,7 +253,7 @@ const Home = () => {
               <div className='one-mp-item'>
                 <img src={assets.cat_clothing_03} alt="" />
                 <div>
-                  <h4>1278 <i class='bx bxs-heart' ></i></h4>
+                  <h4>1278 <i className='bx bxs-heart' ></i></h4>
 
                   <span>New</span>
                 </div>
@@ -259,7 +262,7 @@ const Home = () => {
               <div className='one-mp-item'>
                 <img src={assets.cat_clothing_03} alt="" />
                 <div>
-                  <h4>1278 <i class='bx bxs-heart' ></i></h4>
+                  <h4>1278 <i className='bx bxs-heart' ></i></h4>
 
                   <span>New</span>
                 </div>
@@ -268,7 +271,7 @@ const Home = () => {
               <div className='one-mp-item'>
                 <img src={assets.cat_clothing_03} alt="" />
                 <div>
-                  <h4>1278 <i class='bx bxs-heart' ></i></h4>
+                  <h4>1278 <i className='bx bxs-heart' ></i></h4>
 
                   <span>New</span>
                 </div>
@@ -277,7 +280,7 @@ const Home = () => {
               <div className='one-mp-item'>
                 <img src={assets.cat_clothing_03} alt="" />
                 <div>
-                  <h4>1278 <i class='bx bxs-heart' ></i></h4>
+                  <h4>1278 <i className='bx bxs-heart' ></i></h4>
 
                   <span>New</span>
                 </div>
@@ -286,7 +289,7 @@ const Home = () => {
               <div className='one-mp-item'>
                 <img src={assets.cat_clothing_03} alt="" />
                 <div>
-                  <h4>1278 <i class='bx bxs-heart' ></i></h4>
+                  <h4>1278 <i className='bx bxs-heart' ></i></h4>
 
                   <span>New</span>
                 </div>
@@ -303,18 +306,19 @@ const Home = () => {
             <SectionHead title={'Just For You'} icon={'bx bxs-star'} iconColor={'#004CFF'} />
 
             <div className='just-for-you-main'>
-              <OneProduct_S1 name={'A beautiful bag, comes in different colors'} price={'20.99'} image={assets.cat_bags_01} />
-              <OneProduct_S1 name={'A beautiful bag, comes in different colors'} price={'20.99'} image={assets.cat_bags_02} />
-              <OneProduct_S1 name={'A beautiful bag, comes in different colors'} price={'20.99'} image={assets.cat_bags_03} />
-              <OneProduct_S1 name={'A beautiful bag, comes in different colors'} price={'20.99'} image={assets.cat_bags_04} />
+
+              {
+                menClothing.slice(0, 10).map((item, index) => (
+                  <OneProduct_S1 name={item.name} price={item.price} image={item.image[0]} />
+                ))
+              }
+              
             </div>
           </div>
         </section>
 
       </div>
 
-
-      <Outlet />
     </div>
   )
 }

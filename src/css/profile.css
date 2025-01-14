@@ -1,0 +1,120 @@
+:root {
+  --the-blue: #004CFF;
+  --the-light-blue: #DFE9FF;
+}
+
+/* -----  ----- */
+
+.profile {
+  height: 100% !important;
+  width: 100%;
+}
+
+.profile-nav {
+  width: 100%;
+  height: 70px;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-nav .left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-nav .left img {
+  width: 60px;
+  height: 60px;
+  border: 3px solid white;
+  border-radius: 100%;
+  box-shadow: 0.1px 0.1px 10px 0.5px rgba(0, 0, 0, 0.3);
+  object-position: center;
+  object-fit: cover;
+}
+
+.profile-nav .left div {
+  padding: 10px 30px;
+  background-color: var(--the-blue);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.profile .profile-nav .left div p {
+  margin: 0;
+  color: white;
+}
+
+.profile-nav .right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.profile-nav .right button {
+  height: 40px;
+  width: 40px;
+  border: none;
+  background-color: var(--the-light-blue);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-nav .right button i {
+  margin: 0;
+  font-size: 25px;
+  color: var(--the-blue);
+}
+
+/* ------------------------------------------- */
+
+.profile-section-one h1 {
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.profile-section-one .announcement {
+  background-color: #f8f8f8;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+}
+
+.announcement .buttons {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-left: 1px solid #f1f1f1;
+  padding-left: 8px;
+}
+
+.announcement .buttons .go {
+  background-color: var(--the-blue);
+  color: white;
+  font-size: 20px;
+  padding: 7px;
+  border-radius: 100%;
+}
+
+.announcement .buttons .cancel {
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  padding: 7px;
+  border-radius: 100%;
+}
+
+.announcement .text h5 {
+  font-weight: 600;
+}
+
+
+

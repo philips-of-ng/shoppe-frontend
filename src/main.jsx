@@ -13,12 +13,10 @@ import { ShopContext, ShopProvider } from './context/ShopContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ShopProvider>
     <AuthProvider>
-      <React.StrictMode>
-        <ToastContainer />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </React.StrictMode>
+      <ToastContainer />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </AuthProvider>
   </ShopProvider>
 
