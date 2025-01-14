@@ -23,6 +23,7 @@ const SignUp = ({ setDisplay }) => {
 
   const [inputPicture, setInputPicture] = useState(null);
   const [loadingSignUp, setLoadingSignUp] = useState(false);
+  
 
   // Handle form submission
   const handleSignUp = async () => {
