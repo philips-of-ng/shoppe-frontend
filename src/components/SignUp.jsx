@@ -19,77 +19,209 @@ const SignUp = ({ setDisplay }) => {
     password: '',
     rePassword: '', // For confirm password input
     display_picture: null,
+    displayPicture: ''
   });
 
   const [inputPicture, setInputPicture] = useState(null);
   const [loadingSignUp, setLoadingSignUp] = useState(false);
-  
+
+  //THIS IS THE FUNCTION THAT ACTUALLY UPLOADS THE USER IMAGE 
+  const handleImageUpload = async (image) => {
+    try {
+      const formData = new FormData()
+      formData.append('image', image)
+      const imageAPI = 'http://localhost:5000/api/files/upload'
+      const response = await axios.post(imageAPI, formData, {
+        headers: {
+          "Content-Type": 'multipart/form-data'
+        }
+      })
+
+      console.log('Image uploaded successfully', response.data.imageUrl);
+      return response.data.imageUrl
+    } catch (error) {
+      console.log('Error uploading user image', error);
+      return false
+    }
+  }
 
   // Handle form submission
+  // const handleSignUp = async () => {
+
+  //   setLoadingSignUp(true)
+
+  //   if (formData.display_picture) {
+  //     const imageUploadResponse = await handleImageUpload(formData.display_picture)
+  //     console.log('Response', imageUploadResponse);
+
+  //     if (imageUploadResponse) {
+  //       setFormData((prev) => ({ ...prev, displayPicture: imageUploadResponse }))
+  //     } else {
+  //       toast.error('Image upload failed')
+  //     }
+  //   }
+
+  //   const passwordRegex =
+  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  //   // Validate inputs
+  //   if (!formData.firstName) {
+  //     toast.error('Please input your first name...');
+  //     return;
+  //   }
+  //   if (!formData.lastName) {
+  //     toast.error('Please input your last name...');
+  //     return;
+  //   }
+  //   if (!formData.email) {
+  //     toast.error('Please input your email...');
+  //     return;
+  //   }
+  //   if (!formData.password) {
+  //     toast.error('Please create a password...');
+  //     return;
+  //   }
+  //   // if (!passwordRegex.test(formData.password)) {
+  //   //   toast.error(
+  //   //     'Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character.'
+  //   //   );
+  //   //   return;
+  //   // }
+  //   if (formData.password !== formData.rePassword) {
+  //     toast.error('Passwords do not match.');
+  //     return;
+  //   }
+
+  //   formData.fullName = `${formData.firstName} ${formData.lastName}`;
+
+  //   const dataObject = {
+  //     firstName: formData.firstName,
+  //     lastName: formData.lastName,
+  //     fullName: formData.fullName,
+  //     email: formData.email,
+  //     password: formData.password,
+  //     displayPicture: formData.displayPicture
+  //   };
+
+  //   console.log(dataObject);
+  //   // console.log(dataObject.display_picture);
+
+  //   try {
+  //     // setLoadingSignUp(true);
+
+  //     const api = 'http://localhost:5000/api/users';
+  //     const response = await axios.post(api, dataObject)
+  //     console.log('Response', response);
+  //     toast.success('Sign-up successful!');
+  //     toast.success('Redirecting you to login page')
+  //     setTimeout(() => {
+  //       setDisplay('login')
+  //     }, 5000);
+  //   } catch (error) {
+  //     if (error.status == 409) {
+  //       toast.error('A user with the same email already exists in our database')
+  //     }
+  //     console.error('Error signing up:', error);
+  //     // toast.error('Something went wrong. Please try again.');
+  //   } finally {
+  //     setLoadingSignUp(false);
+  //   }
+  // };
+
+
+
   const handleSignUp = async () => {
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-    // Validate inputs
-    if (!formData.firstName) {
-      toast.error('Please input your first name...');
-      return;
-    } else if (!formData.lastName) {
-      toast.error('Please input your last name...');
-      return;
-    } else if (!formData.email) {
-      toast.error('Please input your email...');
-      return;
-    } else if (!formData.password) {
-      toast.error('Please create a password...');
-      return;
-    } 
-    
-    // else if (!passwordRegex.test(formData.password)) {
-    //   toast.error(
-    //     'Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character.'
-    //   );
-    //   return;} 
-      
-      else if (formData.password !== formData.rePassword) {
-      toast.error('Passwords do not match.');
-      return;
-    }
-
-    formData.fullName = `${formData.firstName} ${formData.lastName}`;
-
-    const dataObject = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      fullName: formData.fullName,
-      email: formData.email,
-      password: formData.password,
-      displayPicture: 'link-to-pic'
-    };
-
-    console.log(dataObject);
-    // console.log(dataObject.display_picture);
+    setLoadingSignUp(true);
 
     try {
-      setLoadingSignUp(true);
+      // Validate inputs
+      if (!formData.firstName) {
+        toast.error('Please input your first name...');
+        return;
+      }
+      if (!formData.lastName) {
+        toast.error('Please input your last name...');
+        return;
+      }
+      if (!formData.email) {
+        toast.error('Please input your email...');
+        return;
+      }
+      if (!formData.password) {
+        toast.error('Please create a password...');
+        return;
+      }
+      if (formData.password !== formData.rePassword) {
+        toast.error('Passwords do not match.');
+        return;
+      }
+
+      // Password Regex (uncomment if needed)
+      // const passwordRegex =
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      // if (!passwordRegex.test(formData.password)) {
+      //   toast.error(
+      //     'Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character.'
+      //   );
+      //   return;
+      // }
+
+      // Prepare full name
+      const fullName = `${formData.firstName} ${formData.lastName}`;
+
+      // Upload the image if it exists
+      let displayPicture = '';
+      if (formData.display_picture) {
+        const imageUploadResponse = await handleImageUpload(formData.display_picture);
+        if (imageUploadResponse) {
+          displayPicture = imageUploadResponse;
+        } else {
+          toast.error('Image upload failed');
+          return; // Stop execution if image upload fails
+        }
+      }
+
+      // Prepare the data object
+      const dataObject = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        fullName,
+        email: formData.email,
+        password: formData.password,
+        displayPicture,
+      };
+
+      console.log('Data object:', dataObject);
+
+      // Send data to the database
       const api = 'http://localhost:5000/api/users';
-      const response = await axios.post(api, dataObject)
-      console.log('Response', response);
+      const response = await axios.post(api, dataObject);
+      console.log('Response:', response);
+
+      // Handle success
       toast.success('Sign-up successful!');
-      toast.success('Redirecting you to login page')
+      toast.success('Redirecting you to the login page...');
       setTimeout(() => {
-        setDisplay('login')
+        setDisplay('login');
       }, 5000);
     } catch (error) {
-      if (error.status == 409) {
-        toast.error('A user with the same email already exists in our database')
+      // Handle error
+      if (error.response && error.response.status === 409) {
+        toast.error('A user with the same email already exists in our database');
+      } else {
+        console.error('Error signing up:', error);
+        toast.error('Something went wrong. Please try again.');
       }
-      console.error('Error signing up:', error);
-      // toast.error('Something went wrong. Please try again.');
     } finally {
       setLoadingSignUp(false);
     }
   };
+
+
+
+
+
+
 
   // Cleanup object URLs created for images
   useEffect(() => {
@@ -157,18 +289,8 @@ const SignUp = ({ setDisplay }) => {
                   if (!file) return;
 
                   // Validate file type and size
-                  if (
-                    !['image/jpeg', 'image/png', 'image/svg+xml'].includes(
-                      file.type
-                    )
-                  ) {
-                    toast.error(
-                      'Invalid file type. Only JPG, PNG, and SVG are allowed.'
-                    );
-                    return;
-                  }
-                  if (file.size > 2 * 1024 * 1024) {
-                    toast.error('File size exceeds 2MB.');
+                  if (!['image/jpeg', 'image/png', 'image/svg+xml'].includes(file.type)) {
+                    toast.error('Invalid file type. Only JPG, PNG, and SVG are allowed.');
                     return;
                   }
 

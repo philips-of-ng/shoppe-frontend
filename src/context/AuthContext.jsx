@@ -9,10 +9,10 @@ export const AuthProvider = ({ children }) => {
   const [pwTrial, setPwTrial] = useState(0)
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'))
-    if (storedUser) {
-      setUser(storedUser)
-    }
+    // const storedUser = JSON.parse(localStorage.getItem('user'))
+    // if (storedUser) {
+    //   setUser(storedUser)
+    // }
 
     const trials = JSON.parse(localStorage.getItem('pwTrials'))
     if (trials) {
