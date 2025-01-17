@@ -6,7 +6,7 @@ const Profile = () => {
 
   const { user } = useContext(AuthContext)
 
-  console.log('Profile naani', user);
+  console.log('Profile from profile page', user);
 
   return (
     <div className='profile'>

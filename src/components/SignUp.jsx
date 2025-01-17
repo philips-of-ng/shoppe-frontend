@@ -155,8 +155,7 @@ const SignUp = ({ setDisplay }) => {
         toast.error('Passwords do not match.');
         return;
       }
-
-      // Password Regex (uncomment if needed)
+      // Password Regex (uncomment if needed) - removed for testing purpose
       // const passwordRegex =
       //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
       // if (!passwordRegex.test(formData.password)) {
