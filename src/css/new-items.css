@@ -1,0 +1,8 @@
+.new-items-main {
+  display: flex;
+  overflow: scroll;
+}
+
+.new-items-main > div {
+  min-width: 180px;
+}

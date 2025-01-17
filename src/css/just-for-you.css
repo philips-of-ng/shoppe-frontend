@@ -1,0 +1,4 @@
+.just-for-you-main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}

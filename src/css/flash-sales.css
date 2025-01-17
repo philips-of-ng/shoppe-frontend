@@ -1,0 +1,66 @@
+
+.flash-sales-top {
+  width: 100%;
+  height: 70px;
+  /* border: 2px solid blue; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flash-sales-top .fst-left h2 {
+  font-weight: 700;
+  margin: 0;
+}
+
+.flash-sales-top .fst-right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.fst-right i {
+  color: var(--the-blue);
+  font-size: 35px;
+  margin-right: 10px;
+}
+
+.fst-right span {
+  font-family: 'Raleway';
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #f3f3f3;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+
+.flash-sales-main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.one-fs-item {
+  height: fit-content;
+  border: 2px solid green;
+  padding: 0px;
+  border: 5px solid white;
+  box-shadow: 0.2px 0.2px 10px 0.5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  border-radius: 12px;
+}
+
+.one-fs-item span {
+  color: white;
+  font-weight: 700;
+  padding: 2px 5px;
+  background: linear-gradient(90deg, #FF3B75, #FF6B5D);
+  position: absolute;
+  right: 0;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+}
+
+.one-fs-item img {
+  width: 100%;
+}

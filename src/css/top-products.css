@@ -1,0 +1,31 @@
+
+.tp-top {
+
+}
+
+.tp-main {
+  display: flex;
+  align-items: center;
+  overflow-x: scroll !important;
+  gap: 15px;
+  flex-shrink: 0;
+  padding: 30px 0;
+}
+
+.tp-main .one-top-product {
+  width: 80px !important;
+  min-width: 80px;
+  height: 80px;
+  border: 5px solid white;
+  border-radius: 100%;
+  box-shadow: 0.2px 0.2px 10px 0.5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.one-top-product img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}

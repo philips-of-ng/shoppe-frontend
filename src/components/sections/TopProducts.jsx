@@ -1,6 +1,10 @@
 import React, { useContext } from 'react'
 import SectionHead from '../SectionHead'
 import { ShopContext } from '../../context/ShopContext'
+import { assets } from '../../assets/images/images'
+import { assets_2 } from '../../assets/assets/assets'
+
+import '../../css/top-products.css'
 
 
 const TopProducts = () => {
