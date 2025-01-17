@@ -5,6 +5,8 @@ import '../css/home.css'
 import { assets } from '../assets/images/images';
 import { assets_2 } from '../assets/assets/assets';
 
+import Categories from '../components/sections/Categories';
+
 //IMPORTING REACT SLICK
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
@@ -80,58 +82,7 @@ const Home = () => {
         {/* SECOND COMPONENT OF THE HOME PAGE - CATEGORIES */}
 
         <section className='home-section-two'>
-          <div className='categories'>
-
-            <SectionHead title={'Categories'} />
-
-            <div className='ct-main'>
-
-              {
-                categories.map((item, index) => (
-                  <>
-                    <div key={index} className="one-category">
-                      <div className='one-cat-up'>
-                        {/* complicated code, dont touch */}
-                        {
-                          getRepImages(item.products).slice(0, 4).map((image, imgIndex) => (
-                            <img key={imgIndex} src={image} />
-                          ))
-                        }
-
-                      </div>
-
-                      <div className='one-cat-down'>
-                        <p>{item.name}</p>
-
-                        <span>{item.length}</span>
-                      </div>
-                    </div>
-                  </>
-                ))
-              }
-
-
-              {/* PROTOTYPE JUST TO BE SAFE */}
-              {/* <div className="one-category">
-                <div className='one-cat-up'>
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                  <img src={assets.shoppe_banner} />
-                </div>
-
-                <div className='one-cat-down'>
-                  <p>Clothing</p>
-
-                  <span>109</span>
-                </div>
-              </div> */}
-
-              
-
-            </div>
-
-          </div>
+          <Categories />
         </section>
 
 
