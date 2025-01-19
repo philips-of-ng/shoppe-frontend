@@ -131,8 +131,6 @@ const Login = ({ setDisplay }) => {
         )
       }
 
-
-
       {
         collectedInfo.nil == 'yes' ? (
 

@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext'
 
 const Profile = () => {
 
-  const { user } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
 
   console.log('Profile from profile page', user);
 
@@ -53,6 +53,10 @@ const Profile = () => {
 
           </div>
         </section>
+
+
+        <button onClick={() => logout(null)}>Logout</button>
+
       </div>
 
     </div>
