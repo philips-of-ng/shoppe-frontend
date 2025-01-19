@@ -8,6 +8,7 @@
 .profile {
   height: 100% !important;
   width: 100%;
+  overflow-y: scroll;
 }
 
 .profile-nav {

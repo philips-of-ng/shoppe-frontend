@@ -2,6 +2,13 @@ import React, { useContext } from 'react'
 import '../css/profile.css'
 import { AuthContext } from '../context/AuthContext'
 
+//SECTIONS
+import NewItems from '../components/sections/NewItems'
+import Categories from '../components/sections/Categories'
+import FlashSales from '../components/sections/FlashSales'
+import JustForYou from '../components/sections/JustForYou'
+import TopProducts from '../components/sections/TopProducts'
+
 const Profile = () => {
 
   const { user, logout } = useContext(AuthContext)
@@ -52,6 +59,28 @@ const Profile = () => {
             </div>
 
           </div>
+        </section>
+
+
+
+        <section>
+          <NewItems />
+        </section>
+
+        <section>
+          <Categories />
+        </section>
+
+        <section>
+          <FlashSales />
+        </section>
+
+        <section>
+          <TopProducts />
+        </section>
+
+        <section>
+          <JustForYou />
         </section>
 
 
