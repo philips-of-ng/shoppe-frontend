@@ -1,17 +1,22 @@
-import React, { useContext } from 'react'
-import '../css/profile.css'
-import { AuthContext } from '../context/AuthContext'
+import React, { useContext } from 'react';
+import '../css/profile.css';
+import { AuthContext } from '../context/AuthContext';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 //SECTIONS
-import NewItems from '../components/sections/NewItems'
-import Categories from '../components/sections/Categories'
-import FlashSales from '../components/sections/FlashSales'
-import JustForYou from '../components/sections/JustForYou'
-import TopProducts from '../components/sections/TopProducts'
+import NewItems from '../components/sections/NewItems';
+import Categories from '../components/sections/Categories';
+import FlashSales from '../components/sections/FlashSales';
+import JustForYou from '../components/sections/JustForYou';
+import TopProducts from '../components/sections/TopProducts';
+
+import Settings from './Settings';
 
 const Profile = () => {
 
-  const { user, logout } = useContext(AuthContext)
+  const navigate = useNavigate();
+
+  const { user, logout } = useContext(AuthContext);
 
   console.log('Profile from profile page', user);
 
@@ -29,15 +34,15 @@ const Profile = () => {
 
         <div className='right'>
           <button>
-            <i class='bx bx-scan'></i>
+            <i className='bx bx-scan'></i>
           </button>
 
           <button>
-            <i class='bx bx-list-ul' ></i>
+            <i className='bx bx-list-ul' ></i>
           </button>
 
-          <button>
-            <i class='bx bx-cog' ></i>
+          <button onClick={() => navigate('/profile/settings')}>
+            <i className='bx bx-cog' ></i>
           </button>
         </div>
       </div>
@@ -54,13 +59,12 @@ const Profile = () => {
             </div>
 
             <div className='buttons'>
-              <i class='go bx bx-right-arrow-alt' ></i>
-              <i class='cancel bx bx-x' ></i>
+              <i className='go bx bx-right-arrow-alt' ></i>
+              <i className='cancel bx bx-x' ></i>
             </div>
 
           </div>
         </section>
-
 
 
         <section>
@@ -84,12 +88,13 @@ const Profile = () => {
         </section>
 
 
+
         <button onClick={() => logout(null)}>Logout</button>
 
       </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

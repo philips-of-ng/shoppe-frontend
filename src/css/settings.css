@@ -1,0 +1,66 @@
+:root {
+  --the-blue: #004CFF;
+  --the-light-blue: #DFE9FF;
+}
+
+.settings-page {
+  width: 100%;
+  height: 85vh;
+  border: 5px solid green;
+  overflow-y: scroll;
+}
+
+.settings-nav {
+  height: 60px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.settings-nav h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.settings-content {
+  border: 2px solid red;
+}
+
+.settings-content > div {
+  margin-bottom: 40px;
+}
+
+.settings-content div h3 {
+  font-weight: 600;
+  margin: 18px 0;
+}
+
+.settings-content div a {
+  color: black;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 2px solid;
+  border-bottom-color: rgb(299, 299, 299);
+}
+
+.settings-content div a p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.settings-content div a span {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.settings-content div a i {
+  font-size: 30px;
+}
+
+
