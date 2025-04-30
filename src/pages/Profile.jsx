@@ -11,6 +11,7 @@ import JustForYou from '../components/sections/JustForYou';
 import TopProducts from '../components/sections/TopProducts';
 
 import Settings from './Settings';
+import PHANav from '../components/PHANav';
 
 const Profile = () => {
 
@@ -23,29 +24,7 @@ const Profile = () => {
   return (
     <div className='profile'>
 
-      <div className='profile-nav'>
-        <div className='left'>
-          <img src={user.displayPicture} alt="" />
-
-          <div>
-            <p>My Activity</p>
-          </div>
-        </div>
-
-        <div className='right'>
-          <button>
-            <i className='bx bx-scan'></i>
-          </button>
-
-          <button>
-            <i className='bx bx-list-ul' ></i>
-          </button>
-
-          <button onClick={() => navigate('/profile/settings')}>
-            <i className='bx bx-cog' ></i>
-          </button>
-        </div>
-      </div>
+      <PHANav />
 
       <div className='profile-content'>
 
