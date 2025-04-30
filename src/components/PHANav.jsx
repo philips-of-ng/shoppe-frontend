@@ -2,13 +2,15 @@ import React from 'react'
 import '../css/pha-nav.css'
 import { AuthContext } from '../context/AuthContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // THIS IS THE GENRAL NAV FOR HISTORY, ACTIVITIES AND PROFILE PAGES
 
 const PHANav = () => {
 
-    const { user, logout } = useContext(AuthContext);
-  
+  const navigate = useNavigate()
+  const { user, logout } = useContext(AuthContext);
+
   return (
     <div className='profile-nav'>
       <div className='left'>

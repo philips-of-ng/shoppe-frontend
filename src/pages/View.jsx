@@ -9,6 +9,7 @@ import Menu from './Menu'
 import Cart from './Cart'
 import Profile from './Profile'
 import Settings from './Settings'
+import History from './History'
 
 const View = () => {
 
@@ -55,7 +56,7 @@ const View = () => {
             <Route path='profile' element={<Profile />} />
             <Route path='/profile/settings' element={<Settings />} />
 
-            <Route path='/history' element={<History />} />
+            <Route path='history' element={<History />} />
           </Routes>
         </div>
 

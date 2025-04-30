@@ -7,7 +7,7 @@ const History = () => {
       <PHANav />
 
       <div className="history-items">
-        HISTORY PAGE
+        
       </div>
     </div>
   )
